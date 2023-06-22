@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="title">Add Patient</h1>
+    <form method="POST" action="{{ url_for('main.add_patient') }}">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            {{ form.name.label }}
+            {{ form.name(class="form-control") }}
+             {% if form.name.errors %}{{ form.name.errors }}{% endif %}
+        </div>
+      <div class="form-group">
+            {{ form.surname.label }}
+            {{ form.surname(class="form-control") }}
+           {% if form.surname.errors %}{{ form.surname.errors }}{% endif %}
+        </div>
+      <div class="form-group">
+            {{ form.phone_number.label }}
+            {{ form.phone_number(class="form-control") }}
+          {% if form.phone_number.errors %}{{ form.phone_number.errors }}{% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.email.label }}
+            {{ form.email(class="form-control") }}
+          {% if form.email.errors %}{{ form.email.errors }}{% endif %}
+        </div>
+         <div class="form-group">
+            {{ form.identity_number.label }}
+            {{ form.identity_number(class="form-control") }}
+             {% if form.identity_number.errors %}{{ form.identity_number.errors }}{% endif %}
+
+        </div>
+        <div class="form-group validation-container">
+            <button type="submit" class="btn btn-primary">Add</button>
+        </div>
+    </form>
+{% endblock %}
+

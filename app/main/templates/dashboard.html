@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="title">Dashboard</h1>
+<div class="container-patient-list">
+    <table>
+        <tr>
+            <th>Patient Name</th>
+            <th>Date</th>
+            <th>start_time</th>
+            <th>end_time</th>
+            <th></th>
+            <th></th>
+        </tr>
+        {% for appointment in appointments %}
+        <tr>
+            <td>{{ appointment.patient_name }}</td>
+            <td>{{ appointment.date }}</td>
+            <td>{{ appointment.start_time }}</td>
+            <td>{{ appointment.end_time }}</td>
+            <td><a href="{{ url_for('main.update_appointment', appointment_id=appointment.id) }}">update</a></td>
+            <td><a href="{{ url_for('main.delete_appointment', appointment_id=appointment.id) }}">delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    <div class="link-container">
+        <a href="{{ url_for('main.add_appointment') }}" class="floating-button"> Add Appointment </a>
+    </div>
+</div>
+{% endblock %}

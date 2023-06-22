@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="texthome">Welcome to Dentist App</h1>
+
+    <div class="link-container">
+        <a href="{{ url_for('main.change_google_account') }}" class="home-button"> change google account </a>
+    </div>
+{% endblock %}
+
+change_google_account():

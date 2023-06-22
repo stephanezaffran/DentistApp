@@ -1,0 +1,7 @@
+
+exclude_files/*
+credentials_data/*
+migrations/*
+app/google/
+.idea/*
+__pycache__/*

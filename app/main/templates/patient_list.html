@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+    {% block content %}
+        <h1 class="title">Patient List</h1>
+        <div class="container-patient-list">
+            <table>
+                <tr>
+                    <th>Surname</th>
+                    <th>Name</th>
+                    <th>Phone Number</th>
+                    <th>Identity Number</th>
+                    <th>Email</th>
+
+                    <th></th>
+                    <th></th>
+                </tr>
+                {% for patient in patients %}
+                <tr>
+                    <td>{{ patient.surname }}</td>
+                    <td>{{ patient.name }}</td>
+                    <td>{{ patient.phone_number }}</td>
+                    <td>{{ patient.identity_number }}</td>
+                    <td>{{ patient.email }}</td>
+                    <td><a href="{{ url_for('main.update_patient', patient_id=patient.id) }}" >update</a></td>
+                    <td><a href="{{ url_for('main.delete_patient', patient_id=patient.id) }}">delete</a></td>
+                </tr>
+                {% endfor %}
+                </table>
+                <div class="link-container">
+                    <a href="{{ url_for('main.add_patient') }}" class="floating-button"> Add </a>
+                </div>
+        </div>
+{% endblock %}

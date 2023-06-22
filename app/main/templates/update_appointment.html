@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#patient').change(function() {
+                var selectedValue = $(this).val();
+                if (selectedValue === '0') {
+
+                    $('#date_group').prop('hidden', true);
+                    $('.time_group').prop('hidden', true);
+                } else {
+                    $('#date_group').prop('hidden', false);
+                    $('.time_group').prop('hidden', false);
+                }
+            });
+        });
+    </script>
+
+    <h1 class="title">Update Appointment</h1>
+    <form method="POST" action="{{ url_for('main.update_appointment', appointment_id=appointment.id) }}">
+         {{ form.hidden_tag() }}
+         <div class="form-group">
+            {{ form.patient.label }}
+            {{ form.patient(class="form-control") }}
+        </div>
+        <div class="form-group" id="date_group">
+            {{ form.date.label }}
+            {{ form.date(class="form-control") }}
+        </div>
+
+        <div class="form-group time_group">
+            {{ form.start_time.label }}
+            {{ form.start_time(class="form-control") }}
+        </div>
+        <div class="form-group time_group">
+            {{ form.end_time.label }}
+            {{ form.end_time(class="form-control") }}
+        </div>
+          <div class="form-group">
+            {{ form.message.label }}
+            {{ form.message(class="form-control") }}
+        </div>
+        <div class="form-group validation-container">
+            <button type="submit" class="btn btn-primary">update</button>
+        </div>
+    </form>
+{% endblock %}
