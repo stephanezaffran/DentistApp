@@ -29,11 +29,11 @@ def get_event_by_date_from_calendar():
 
     events_2 = google_service.get_events(time_min_2_day, time_max_2_day)
     doctor_message = f"sended message 2 days appointments\n {send_2_days_message(events_2)}"
-    send_patient_whatsapp_message(None, doctor_message)
+    # send_patient_whatsapp_message(None, doctor_message)
 
     events_1 = google_service.get_events(time_min_1_day, time_max_1_day)
     doctor_message = f"sended message for tomorrow appointments\n {send_1_days_message(events_1)}"
-    send_patient_whatsapp_message(None, doctor_message)
+    # send_patient_whatsapp_message(None, doctor_message)
 
 
 def split_data_from_event(event):
@@ -97,7 +97,6 @@ def send_1_days_message(events):
             if event.get('extendedProperties')['private']['app'] == 'DentistApp':
                 # print(f" exist extendedProperties : {event.get('extendedProperties')}")
                 splited_event = split_data_from_event(event)
-                print(message)
                 message = f"הודעת תזכורת.  שלום  {splited_event['surname']}  {splited_event['name']} יש לך פגישה במרפאת שיננים ברוכין מחר בשעה {splited_event['start_time']}  בברכה "
                 valid = send_patient_whatsapp_message(splited_event, message)
                 if valid == 200:
@@ -187,5 +186,5 @@ def change_google_account():
 
 scheduler = BackgroundScheduler(timezone='Asia/Jerusalem')
 #scheduler.add_job(get_event_by_date, 'cron', hour=9, minute=0)  # Schedule function to run every day at 9:00
-scheduler.add_job(get_event_by_date_from_calendar, 'interval', seconds=1000)
+scheduler.add_job(get_event_by_date_from_calendar, 'interval', seconds=180)
 scheduler.start()

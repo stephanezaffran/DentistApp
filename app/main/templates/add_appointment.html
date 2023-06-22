@@ -11,9 +11,11 @@
 
                     $('#date_group').prop('hidden', true);
                     $('.time_group').prop('hidden', true);
+                    $('.message_group').prop('hidden', true);
                 } else {
                     $('#date_group').prop('hidden', false);
                     $('.time_group').prop('hidden', false);
+                    $('.message_group').prop('hidden', false);
                 }
             });
         });
@@ -38,7 +40,7 @@
             {{ form.end_time.label }}
             {{ form.end_time(class="form-control") }}
         </div>
-         <div class="form-group">
+         <div class="form-group message_group">
             {{ form.message.label }}
             {{ form.message(class="form-control") }}
         </div>
