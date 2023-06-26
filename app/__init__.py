@@ -1,5 +1,11 @@
+# import sys
+# project_home = '/home/stephanezaffran/DentistApp'
+# if project_home not in sys.path:
+#     sys.path = [project_home] + sys.path
+
+
 from flask import Flask
-from app.models import db, User, migrate
+from app.models import db, User
 
 from app.services import google_service
 
@@ -16,10 +22,11 @@ def create_app():
     dentist_app = Flask(__name__)
     dentist_app.config.from_object(Config)
 
-    migrate.init_app(dentist_app, db)
+    #migrate.init_app(dentist_app, db)
 
     db.init_app(dentist_app)
-    login_manager = LoginManager(dentist_app)
+    login_manager = LoginManager()
+    login_manager.init_app(dentist_app)
     login_manager.login_view = 'auth.login'
 
     @login_manager.user_loader
